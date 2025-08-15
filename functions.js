@@ -18,3 +18,11 @@ function getNewArray (getArray){
 }
 
 console.log(getNewArray(myArray))
+
+const yourArray = [1,23,4]
+
+function getNewArray2 (getArray){
+    return getArray[0]
+}
+
+console.log(getNewArray(myArray))
