@@ -3,59 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML practice</title>
-    <style>
-        table, th, td {
-  border: 1px solid black;
-  border-collapse: collapse;
-  border-style: dotted;
-}
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <title>Spotify - Web Player: Music for everyone</title>
 </head>
 <body>
-    <table>
-        <tr rowspan="2">
-            <th colspan="2">Company</th>
-            <!-- <th>Contact</th> -->
-            <th>Country</th>
-        </tr>
-        <tr>
-            <td>Alfreds Futterkiste</td>
-            <td>Maria Anders</td>
-            <td>Germany</td>
+    <header class="main-header">
+        <div class="header-left">
+            <img src="logo.png" alt="Spotify Logo" class="logo">
+            <nav class="nav-buttons">
+                <button class="nav-btn active">
+                    <img src="home-icon.png" alt="Home" width="16" height="16">
+                </button>
+                
+            </nav>
+        </div>
 
-        </tr>
-        <tr>
-            <td>Centro comercial Moctezuma</td>
-            <td>Francisco Chang</td>
-            <td>Mexico</td>
-        </tr>
-        <tr>
-            <td>Ernst Handel</td>
-            <td>Roland Mendel</td>
-            <td>Austria</td>
-        </tr>
-    </table>
-    <table>
-  <tr>
-    <th>Name</th>
-    <td>Jill</td>
-  </tr>
-  <tr>
-    <th rowspan="2">Phone</th>
-    <td>555-1234</td>
-  </tr>
-  <tr>
-    <td>555-8745</td>
-</tr>
-</table>
+        <div class="header-center">
+            <div class="search-container">
+                <button class="nav-btn">
+                    <img src="home-icon.png" alt="Search" width="16" height="16">
+                    Search
+                </button>
+                <input type="text" placeholder="What do you want to listen to?" class="search-input">
+                
+                <button class="search-btn">
+                    <img src="home-icon.png" alt="Search" width="16" height="16">
+                </button>
+            </div>
+        </div>
 
-<form action="">
-    <label for="fname">First Name:</label><br>
-    <input type="text" id="fname" name="fname"><br>
-    <label for="lname">Last Name:</label><br>
-    <input type="text" id="lname" name="lname">
-    
-</form>
+        <div class="header-right">
+            <a href="#" class="header-link">Premium</a>
+            <a href="#" class="header-link">Support</a>
+            <a href="#" class="header-link">Download</a>
+            <div class="divider"></div>
+            <a href="#" class="install-app">
+                <img src="home-icon.png" alt="Download" width="16" height="16">
+                Install App
+            </a>
+            <button class="sign-up-btn">Sign up</button>
+            <button class="login-btn">Log in</button>
+        </div>
+    </header>
+
+    <iframe src="" width="25%" height="700" ></iframe>
+    <iframe src="" width="74%" height="700"></iframe>
 </body>
 </html>

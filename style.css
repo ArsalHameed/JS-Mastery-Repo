@@ -1,0 +1,169 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Circular', Arial, sans-serif;
+    background-color: #000;
+    color: #fff;
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 32px;
+    background-color: #000;
+    border-bottom: 1px solid #282828;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.logo {
+    height: 32px;
+    width: auto;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background-color: #121212;
+    border: none;
+    border-radius: 24px;
+    color: #b3b3b3;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.nav-btn:hover {
+    background-color: #1a1a1a;
+    color: #fff;
+}
+
+.nav-btn.active {
+    background-color: #333;
+    color: #fff;
+}
+
+.header-center {
+    flex: 1;
+    max-width: 364px;
+    margin: 0 24px;
+}
+
+.search-container {
+    position: relative;
+    display: flex;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 16px 12px 48px;
+    background-color: #242424;
+    border: none;
+    border-radius: 24px;
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+}
+
+.search-input::placeholder {
+    color: #a7a7a7;
+}
+
+.search-btn {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.header-link {
+    color: #b3b3b3;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.header-link:hover {
+    color: #fff;
+}
+
+.divider {
+    width: 1px;
+    height: 24px;
+    background-color: #282828;
+}
+
+.install-app {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #b3b3b3;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.install-app:hover {
+    color: #fff;
+}
+
+.sign-up-btn {
+    padding: 8px 16px;
+    background: none;
+    border: none;
+    color: #a7a7a7;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.sign-up-btn:hover {
+    color: #fff;
+}
+
+.login-btn {
+    padding: 12px 24px;
+    background-color: #fff;
+    border: none;
+    border-radius: 24px;
+    color: #000;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.login-btn:hover {
+    background-color: #f0f0f0;
+    transform: scale(1.02);
+}
