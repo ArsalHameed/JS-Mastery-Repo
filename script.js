@@ -1,71 +1,245 @@
-// 4th task
-const myElement = document.getElementById("nameList");
-const addButton = document.getElementById("addButton");
+// DOM Elements
+const navBtns = document.querySelectorAll('.nav-btn');
+const contentSections = document.querySelectorAll('.content-section');
+const sidebarItems = document.querySelectorAll('.sidebar-item');
+const songCards = document.querySelectorAll('.song-card');
+const artistCards = document.querySelectorAll('.artist-card');
+const mobileNavItems = document.querySelectorAll('.mobile-nav-item');
+const hamburgerMenu = document.getElementById('hamburgerMenu');
+const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+const mobileMenuClose = document.getElementById('mobileMenuClose');
+const mobileMenuBackdrop = document.getElementById('mobileMenuBackdrop');
 
-addButton.addEventListener("click", getInputValue);
-
-function getInputValue(){
-    const nameInput = document.getElementById("nameInput");
-    nameInputValue = nameInput.value.trim();
-    if(nameInputValue){
-        const newElement = document.createElement("li");
-        newElement.textContent= nameInputValue;
-        myElement.appendChild(newElement);
-        nameInput.value="";
+// Mobile Menu Functions
+function toggleMobileMenu() {
+    console.log('Toggle mobile menu function called');
+    console.log('Hamburger element:', hamburgerMenu);
+    console.log('Overlay element:', mobileMenuOverlay);
+    console.log('Backdrop element:', mobileMenuBackdrop);
+    
+    if (hamburgerMenu) {
+        hamburgerMenu.classList.toggle('active');
+        console.log('Hamburger active class toggled');
     }
-    else{
-        nameInput.value="";
+    
+    if (mobileMenuOverlay) {
+        mobileMenuOverlay.classList.toggle('active');
+        console.log('Overlay active class toggled');
     }
-}
-
-
-// 3rd task
-const students = [
-{ name: "Ali", age: 22, marks: 85 },
-{ name: "Ayesha", age: 20, marks: 92 },
-{ name: "Bilal", age: 23, marks: 78 },
-{ name: "Ibrahim", age: 22, marks: 76 },
-{ name: "Usama", age: 21, marks: 80 }
-];
-function sortStudentsByMarks() {
-    return students.sort((a, b) => b.marks - a.marks);
-}
-function getStudentsAboveEighty(){
-    studentname = "";
-    for (let i=0; i<students.length; i++)
-    if (students[i].marks > 80 ) 
-        studentname += students[i].name + " ";
-    return studentname;
-}
-
-function getStudentTwentyOne(){
-    for (let i=0; i<students.length; i++)
-    if (students[i].age === 21 ) 
-        return students[i];
-}
-console.log(sortStudentsByMarks());
-console.log(getStudentsAboveEighty())
-console.log(getStudentTwentyOne())
-
-
-// 2nd task
-const numbers = [10, 5, 8, 2, 6];
-
-function processArray(arr, callback) {
-    const result = [];
-    for (let i = 0; i < arr.length; i++) {
-        result.push(callback(arr[i]));
+    
+    if (mobileMenuBackdrop) {
+        mobileMenuBackdrop.classList.toggle('active');
+        console.log('Backdrop active class toggled');
     }
-    return result;
+    
+    document.body.style.overflow = mobileMenuOverlay && mobileMenuOverlay.classList.contains('active') ? 'hidden' : '';
+    console.log('Body overflow set to:', document.body.style.overflow);
 }
 
-const doubled = processArray(numbers, function(num) {
-    return num * 2;
+function closeMobileMenu() {
+    console.log('Close mobile menu function called');
+    
+    if (hamburgerMenu) {
+        hamburgerMenu.classList.remove('active');
+    }
+    
+    if (mobileMenuOverlay) {
+        mobileMenuOverlay.classList.remove('active');
+    }
+    
+    if (mobileMenuBackdrop) {
+        mobileMenuBackdrop.classList.remove('active');
+    }
+    
+    document.body.style.overflow = '';
+    console.log('Mobile menu closed');
+}
+
+
+// Initialize the app
+document.addEventListener('DOMContentLoaded', function() {
+    initializeEventListeners();
+    initializeNightMode();
 });
 
-const squared = processArray(numbers, function(num) {
-    return num * num;
-});
+// Event Listeners
+function initializeEventListeners() {
+    console.log('Initializing event listeners...');
+    
+    // Check if elements exist
+    console.log('Hamburger menu element:', hamburgerMenu);
+    console.log('Mobile menu overlay:', mobileMenuOverlay);
+    console.log('Mobile menu backdrop:', mobileMenuBackdrop);
+    console.log('Mobile menu close:', mobileMenuClose);
 
-console.log('Doubled:', doubled);
-console.log('Squared:', squared);
+    // Navigation
+    navBtns.forEach(btn => {
+        btn.addEventListener('click', () => switchSection(btn.dataset.section));
+    });
+
+    // Sidebar navigation
+    sidebarItems.forEach((item, index) => {
+        item.addEventListener('click', () => {
+            sidebarItems.forEach(i => i.classList.remove('active'));
+            item.classList.add('active');
+            
+            if (index === 0) switchSection('home');
+            if (index === 1) switchSection('search');
+        });
+    });
+
+    // Hamburger menu - Enhanced debugging
+    if (hamburgerMenu) {
+        console.log('Adding click listener to hamburger menu');
+        hamburgerMenu.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('Hamburger clicked!');
+            toggleMobileMenu();
+        });
+    } else {
+        console.error('Hamburger menu element not found!');
+    }
+    
+    if (mobileMenuClose) {
+        console.log('Adding click listener to close button');
+        mobileMenuClose.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('Close button clicked!');
+            closeMobileMenu();
+        });
+    } else {
+        console.error('Mobile menu close button not found!');
+    }
+    
+    if (mobileMenuBackdrop) {
+        console.log('Adding click listener to backdrop');
+        mobileMenuBackdrop.addEventListener('click', function(e) {
+            console.log('Backdrop clicked!');
+            closeMobileMenu();
+        });
+    } else {
+        console.error('Mobile menu backdrop not found!');
+    }
+
+    if (mobileMenuOverlay) {
+        mobileMenuOverlay.addEventListener('click', (e) => {
+            if (e.target === mobileMenuOverlay) {
+                console.log('Overlay clicked!');
+                closeMobileMenu();
+            }
+        });
+    }
+
+    // Mobile navigation
+    mobileNavItems.forEach((item, index) => {
+        item.addEventListener('click', (e) => {
+            e.preventDefault();
+            mobileNavItems.forEach(i => i.classList.remove('active'));
+            item.classList.add('active');
+            
+            if (index === 0) switchSection('home');
+            if (index === 1) switchSection('search');
+            // Library and Premium can be added later
+        });
+    });
+
+    
+
+
+    // Song cards - Remove play functionality, just for display
+    songCards.forEach(card => {
+        const playBtn = card.querySelector('.song-play-btn');
+        if (playBtn) {
+            playBtn.remove(); // Remove play buttons
+        }
+    });
+
+    // Artist cards - Remove play functionality, just for display
+    artistCards.forEach(card => {
+        const playBtn = card.querySelector('.artist-play-btn');
+        if (playBtn) {
+            playBtn.remove(); // Remove play buttons
+        }
+    });
+
+
+    // Library buttons
+    const createPlaylistBtn = document.querySelector('.create-playlist-btn');
+    const browsePodcastsBtn = document.querySelector('.browse-podcasts-btn');
+    const nightModeToggle = document.getElementById('nightModeToggle');
+    const mobileNightModeToggle = document.getElementById('mobileNightModeToggle');
+    
+    if (createPlaylistBtn) {
+        createPlaylistBtn.addEventListener('click', () => {
+            alert('Create playlist functionality coming soon!');
+        });
+    }
+    
+    if (browsePodcastsBtn) {
+        browsePodcastsBtn.addEventListener('click', () => {
+            alert('Browse podcasts functionality coming soon!');
+        });
+    }
+    
+    if (nightModeToggle) {
+        nightModeToggle.addEventListener('click', toggleNightMode);
+        console.log('Night mode toggle listener added');
+    }
+    
+    if (mobileNightModeToggle) {
+        mobileNightModeToggle.addEventListener('click', toggleNightMode);
+        console.log('Mobile night mode toggle listener added');
+    }
+}
+
+// Navigation Functions
+function switchSection(sectionId) {
+    // Update nav buttons
+    navBtns.forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.dataset.section === sectionId) {
+            btn.classList.add('active');
+        }
+    });
+
+    // Update content sections
+    contentSections.forEach(section => {
+        section.classList.remove('active');
+        if (section.id === sectionId) {
+            section.classList.add('active');
+        }
+    });
+}
+
+// Night Mode Functions
+function initializeNightMode() {
+    // Check if user has a saved preference
+    const savedMode = localStorage.getItem('nightMode');
+    if (savedMode === 'enabled') {
+        enableNightMode();
+    }
+}
+
+function toggleNightMode() {
+    const body = document.body;
+    const isNightMode = body.classList.contains('night-mode');
+    
+    if (isNightMode) {
+        disableNightMode();
+    } else {
+        enableNightMode();
+    }
+}
+
+function enableNightMode() {
+    document.body.classList.add('night-mode');
+    localStorage.setItem('nightMode', 'enabled');
+    console.log('Night mode enabled');
+}
+
+function disableNightMode() {
+    document.body.classList.remove('night-mode');
+    localStorage.setItem('nightMode', 'disabled');
+    console.log('Night mode disabled');
+}
+
